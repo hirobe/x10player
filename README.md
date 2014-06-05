@@ -7,5 +7,5 @@ Movie Player which can change play speed for iOS (Universal).
 
 1. install app to device.
 2. import .mov file with iTuens connect.
-3. play movie and change speed by '1.0x' button.
+3. play movie and change speed by 'x1.0' button.
 
