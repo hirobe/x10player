@@ -221,9 +221,15 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDictionary *object = _objects[indexPath.row];
+        NSString *relativePath = _objects[indexPath.row];
+        NSDictionary *detailItem = _infos[relativePath];
+        if (!detailItem) {
+            detailItem = @{};
+        }
+        NSMutableDictionary *mutableDetailItem = [[NSMutableDictionary alloc] initWithDictionary:detailItem];
+        mutableDetailItem[@"relativePath"] = relativePath;
         [[segue destinationViewController] setDelegate:self];
-        [[segue destinationViewController] setDetailItem:object];
+        [[segue destinationViewController] setDetailItem:mutableDetailItem];
     }
 }
 
