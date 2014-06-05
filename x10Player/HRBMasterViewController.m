@@ -34,6 +34,19 @@
     self.detailViewController = (HRBDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     _objects = [self findFiles];
+
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshRequested:) forControlEvents:UIControlEventValueChanged];
+
+}
+
+- (void)refreshRequested:(id)sender {
+    [self.refreshControl beginRefreshing];
+    
+    _objects = [self findFiles];
+    [self.tableView reloadData];
+    
+    [self.refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning
@@ -116,7 +129,7 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return NO;
+    return YES;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
