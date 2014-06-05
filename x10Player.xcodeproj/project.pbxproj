@@ -24,6 +24,7 @@
 		5D482EC1193F6C3D00E8FD6A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D482E9D193F6C3D00E8FD6A /* UIKit.framework */; };
 		5D482EC9193F6C3D00E8FD6A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D482EC7193F6C3D00E8FD6A /* InfoPlist.strings */; };
 		5D482ECB193F6C3D00E8FD6A /* x10PlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D482ECA193F6C3D00E8FD6A /* x10PlayerTests.m */; };
+		5D49DF24194097A400A014FB /* HRBPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D49DF23194097A400A014FB /* HRBPathManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		5D482EC6193F6C3D00E8FD6A /* x10PlayerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "x10PlayerTests-Info.plist"; sourceTree = "<group>"; };
 		5D482EC8193F6C3D00E8FD6A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5D482ECA193F6C3D00E8FD6A /* x10PlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = x10PlayerTests.m; sourceTree = "<group>"; };
+		5D49DF22194097A400A014FB /* HRBPathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRBPathManager.h; sourceTree = "<group>"; };
+		5D49DF23194097A400A014FB /* HRBPathManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRBPathManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 				5D482EB5193F6C3D00E8FD6A /* HRBDetailViewController.m */,
 				5D482EB7193F6C3D00E8FD6A /* Images.xcassets */,
 				5D482EA0193F6C3D00E8FD6A /* Supporting Files */,
+				5D49DF22194097A400A014FB /* HRBPathManager.h */,
+				5D49DF23194097A400A014FB /* HRBPathManager.m */,
 			);
 			path = x10Player;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D49DF24194097A400A014FB /* HRBPathManager.m in Sources */,
 				5D482EA6193F6C3D00E8FD6A /* main.m in Sources */,
 				5D482EAA193F6C3D00E8FD6A /* HRBAppDelegate.m in Sources */,
 				5D482EB6193F6C3D00E8FD6A /* HRBDetailViewController.m in Sources */,

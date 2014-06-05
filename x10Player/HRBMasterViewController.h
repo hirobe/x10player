@@ -12,6 +12,7 @@
 
 @interface HRBMasterViewController : UITableViewController
 
+
 @property (strong, nonatomic) HRBDetailViewController *detailViewController;
 
 @end

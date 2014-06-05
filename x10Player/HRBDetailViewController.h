@@ -11,6 +11,12 @@
 @interface HRBDetailViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
-
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (weak, nonatomic) id delegate;
+@end
+
+@protocol HRBDetailViewControllerDelegate <NSObject>
+
+- (void)movieViewControllerProgressDidChanged:(HRBDetailViewController*)controller;
+
 @end

@@ -8,6 +8,7 @@
 
 #import "HRBDetailViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "HRBPathManager.h"
 
 #define BUTTON_PADDING_LEFT (13.0f)
 #define BUTTON_PADDING_RIGHT (13.0f)
@@ -63,7 +64,8 @@
 
 - (void)configureView {
     if (self.detailItem ) {
-        NSString *path = self.detailItem[@"path"];
+        NSString *path = [[HRBPathManager sharedInstance] pathFromRelativePath:  self.detailItem[@"relativePath"]];
+
         
         NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
         [defaultCenter removeObserver:self];
@@ -125,6 +127,23 @@
     }
 }
 
+- (void)recordProgress {
+    CGFloat progress = 0;
+    if (self.moviePlayer.duration >0) {
+        progress = self.moviePlayer.currentPlaybackTime / self.moviePlayer.duration *100;
+        
+        NSNumber *oldProgress = self.detailItem[@"progress"];
+        if (oldProgress && [oldProgress floatValue]>progress) {
+            // do nothing
+        }else {
+            self.detailItem[@"progress"] = [NSNumber numberWithInt:progress];
+            if ([self.delegate respondsToSelector:@selector(movieViewControllerProgressDidChanged:)]) {
+                [self.delegate movieViewControllerProgressDidChanged:self];
+            }
+        }
+    }
+}
+
 - (void)playBackStateDidChanged:(NSNotification*)note {
     // restore speed rate when user pause the movie and start playing.
     if (self.moviePlayer.playbackState == MPMoviePlaybackStatePlaying) {
@@ -133,6 +152,11 @@
                 [self setPlaySpeed:_currentSpeedRate];
             });
         }
+        [self recordProgress];
+    }else if (self.moviePlayer.playbackState == MPMoviePlaybackStateStopped) {
+        [self recordProgress];
+    }else if (self.moviePlayer.playbackState == MPMoviePlaybackStatePaused) {
+        [self recordProgress];
     }
 }
 
