@@ -237,16 +237,6 @@
     [self.speedButton setTitle:title forState:UIControlStateNormal];
 }
 
-- (void)moviToFullScreen {
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    if (!window)
-    {
-        window = [[UIApplication sharedApplication].windows objectAtIndex:0];
-    }
-    [window addSubview:self.speedButton];
-}
-
-
 #pragma mark - Split view
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
