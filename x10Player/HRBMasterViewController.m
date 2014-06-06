@@ -65,6 +65,7 @@
 }
 
 - (BOOL)isMovieFile:(NSString*)filePath {
+    filePath = [filePath lowercaseString];
     
     if ([filePath hasSuffix:@".mov"]) {
         return YES;
