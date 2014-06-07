@@ -12,7 +12,7 @@
 
 @interface HRBMasterViewController () {
     NSMutableArray *_objects;
-    NSMutableDictionary *_infos;
+    NSMutableDictionary *_info;
 }
 @end
 
@@ -115,7 +115,7 @@
     NSString *path = [self pathFromRelativePath:@"info.json"];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        _infos = [NSMutableDictionary dictionary];
+        _info = [NSMutableDictionary dictionary];
         return;
     }
     
@@ -123,14 +123,14 @@
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     NSMutableDictionary *mutableDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     //NSLog(@"load:%@",mutableDic);
-    _infos = mutableDic;
+    _info = mutableDic;
 }
 
 - (void)saveInfos {
     NSError *error = nil;
     NSData *data = nil;
-    if([NSJSONSerialization isValidJSONObject:_infos]){
-        data = [NSJSONSerialization dataWithJSONObject:_infos options:NSJSONWritingPrettyPrinted error:&error];
+    if([NSJSONSerialization isValidJSONObject:_info]){
+        data = [NSJSONSerialization dataWithJSONObject:_info options:NSJSONWritingPrettyPrinted error:&error];
         NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSString *path = [self pathFromRelativePath:@"info.json"];
         [string writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
@@ -163,7 +163,7 @@
     NSString *relativePath = _objects[indexPath.row];
     titleLabel.text = relativePath;
     
-    NSDictionary *info = _infos[relativePath];
+    NSDictionary *info = _info[relativePath];
     
     if (!info) {
         progressLaebl.text = @"New!!";
@@ -206,7 +206,7 @@
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         NSString *relativePath = _objects[indexPath.row];
-        NSDictionary *detailItem = _infos[relativePath];
+        NSDictionary *detailItem = _info[relativePath];
         if (!detailItem) {
             detailItem = @{};
         }
@@ -223,7 +223,7 @@
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSString *relativePath = _objects[indexPath.row];
-        NSDictionary *detailItem = _infos[relativePath];
+        NSDictionary *detailItem = _info[relativePath];
         if (!detailItem) {
             detailItem = @{};
         }
@@ -238,7 +238,7 @@
 
 - (void)movieViewControllerProgressDidChanged:(HRBDetailViewController*)controller {
     NSMutableDictionary *detailItem = controller.detailItem;
-    _infos[detailItem[@"relativePath"]] = detailItem;
+    _info[detailItem[@"relativePath"]] = detailItem;
     
     //NSLog(@"%@",_infos);
     [self saveInfos];
